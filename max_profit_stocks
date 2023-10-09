@@ -1,0 +1,18 @@
+class Solution {
+    public int maxProfit(int[] prices) {
+        int maxp = 0;
+        int currentv = prices[0];
+        for(int p: prices){
+            if(p > currentv){ // check if increasing
+                maxp += p-currentv;
+                currentv = p;
+            }
+            else{
+                currentv = p;
+            }
+        }
+        
+        return maxp;
+        
+    }
+}
