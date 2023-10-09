@@ -1,0 +1,20 @@
+class Solution {
+    public void rotate(int[] nums, int k) {
+        if(nums.length<2){
+            return;
+        }
+        int[] new_nums = new int[nums.length];
+        for(int i = 0; i<nums.length; i++){
+            if((i+k)>=nums.length){
+                new_nums[(i+k) % nums.length] = nums[i];
+            }
+            else{
+                new_nums[i+k] = nums[i];
+            }
+        }
+        for(int i=0; i<nums.length; i++){
+            nums[i] = new_nums[i];
+        }
+    }
+    
+}
