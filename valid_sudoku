@@ -1,0 +1,50 @@
+class Solution {
+    public boolean isValidSudoku(char[][] board) {
+        // check row, check column, check box
+        for(int i = 0; i<board.length; i++){
+            for(int j = 0; j<board.length; j++){
+                if(!checkRow(board, i) || !checkCol(board,i) || !checkBox(board, i-i%3, j-j%3)){ 
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    
+    // parameters: full board, row #
+    public boolean checkRow(char[][] board, int r){
+        HashSet<Character> row = new HashSet<>();
+        // ArrayList<Character> row = new ArrayList<>();
+        for(int i = 0; i< board.length; i++){
+            if(board[r][i] == '.'){ continue; }
+            if(row.contains(board[r][i])){ return false; }
+            row.add(board[r][i]);
+        }
+        return true;
+    }
+    
+    // parameters: full board, col #
+    public boolean checkCol(char[][] board, int c){
+        HashSet<Character> col = new HashSet<>();
+        for(int i = 0; i< board.length; i++){
+            if(board[i][c] == '.'){ continue; }
+            if(col.contains(board[i][c])) { return false;}
+            col.add(board[i][c]);
+        }
+        return true;
+    }
+    
+    // parameters: full board, starting index of the box (top left)
+    public boolean checkBox(char[][] board, int row, int col){
+        HashSet<Character> box = new HashSet<>();
+        for(int i = row; i< row+3; i++){
+            for(int j = col; j< col+3; j++){
+                System.out.println(board[i][j]);
+                if(board[i][j] == '.'){ continue; }
+                if(box.contains(board[i][j])) { return false;}
+                box.add(board[i][j]);
+            }
+        }
+        return true;
+    }
+}
